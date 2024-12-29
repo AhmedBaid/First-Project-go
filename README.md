@@ -56,5 +56,4 @@ The program ensures robust error handling:
    - Combine the modified words and save them to the specified output file.
 
 ---
-
 This project is an excellent opportunity to deepen your understanding of Go's file system API, string manipulation, and error handling. Happy coding!
