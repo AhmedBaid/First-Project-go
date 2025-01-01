@@ -135,7 +135,7 @@ func ProcessFlags(chars []string) []string {
 				}
 			}
 			///////////////////////////// FUNCTIONS OF (CAP , N)       ///////////////////////
-		case chars[i] == "(cap,":
+		case chars[i] == "(cap,"  && strings.HasSuffix(chars[i+1], ")"):
 			if i+1 < len(chars) {
 				word := chars[i+1]
 				num, err := strconv.Atoi(word[:len(word)-1])
@@ -167,12 +167,5 @@ func ProcessFlags(chars []string) []string {
 			
 		}
 	}
-	filteredChars := []string{}
-	for _, char := range chars {
-		if char != "" {
-			filteredChars = append(filteredChars, char)
-		}
-	}
-
 	return chars
 }

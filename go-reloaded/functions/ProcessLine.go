@@ -9,33 +9,27 @@ import (
 func ProcessLine(textFile string) string {
 	lines := strings.Split(string(textFile), "\n")
 	var finalslice []string
-
 	for _, line := range lines {
-
-		worlds := strings.Fields(line)
-
-		worlds = ProcessFlags(worlds)
+		words := strings.Fields(line)
+		words = ProcessFlags(words)
 		for {
-
-			newWorlds := ProcessFlags(worlds)
-
-			if reflect.DeepEqual(newWorlds, worlds) {
-				worlds = ProcessFlags(worlds)
+			newwords := ProcessFlags(words)
+			if reflect.DeepEqual(newwords, words) {
+				words = ProcessFlags(words)
 				break
 			}
-
-			worlds = newWorlds
+			words = newwords
 		}
+		////////remove empty /////
 		filteredWords := []string{}
-		filteredWords1 := []string{}
-		for _, word := range worlds {
+		for _, word := range words {
 			if word != "" {
 				filteredWords = append(filteredWords, word)
 			}
 		}
-
-		filteredWords = filter(filteredWords)
-
+		filteredWords = ProcessPunct(filteredWords)
+		////////remove empty /////
+		filteredWords1 := []string{}
 		for _, word := range filteredWords {
 			if word != "" {
 				filteredWords1 = append(filteredWords1, word)
@@ -43,17 +37,13 @@ func ProcessLine(textFile string) string {
 		}
 		filteredWords1 = ProcessFlags(filteredWords1)
 		for {
-
 			newWorlds := ProcessFlags(filteredWords1)
-
 			if reflect.DeepEqual(newWorlds, filteredWords1) {
 				filteredWords1 = ProcessFlags(filteredWords1)
 				break
 			}
-
 			filteredWords1 = newWorlds
 		}
-
 		finalslice = append(finalslice, strings.Join(filteredWords1, " "))
 		fmt.Println(finalslice)
 	}

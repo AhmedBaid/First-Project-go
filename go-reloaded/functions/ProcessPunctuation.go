@@ -1,6 +1,7 @@
 package functions
 
 import (
+	// "fmt"
 	"strings"
 )
 
@@ -138,9 +139,9 @@ func filltquot(str []string) []string {
 
 	for i := 0; i < len(result); i++ {
 		if result[i] == "'" {
-			
-				finresult = append(finresult, result[i])
-			
+
+			finresult = append(finresult, result[i])
+
 		} else if result[i] != "'" {
 			finresult = append(finresult, result[i])
 		}
@@ -176,10 +177,11 @@ func AtoAn(str []string) []string {
 	return str
 }
 
-func filter(str []string) []string {
+func ProcessPunct(str []string) []string {
 	str = fiitpunctuations(str)
+	// fmt.Println("str1",str)
 	str = filltquot(str)
-
+	// fmt.Println("str2",str)
 	inQuots := false
 	for i := 0; i < len(str); i++ {
 		pass := true
@@ -250,6 +252,6 @@ func filter(str []string) []string {
 		}
 	}
 	str = AtoAn(str)
-	// fmt.Println("str = ", str)
+	// fmt.Println("strfinal",str)
 	return str
 }
