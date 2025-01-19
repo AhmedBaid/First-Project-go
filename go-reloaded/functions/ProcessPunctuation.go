@@ -7,16 +7,6 @@ func ProcessPunctuation(slice []string) []string {
 	for i := 0; i < len(slice); i++ {
 		switch {
 		case slice[i] == "'":
-			x := 0
-			for k := i; k >= 0; k-- {
-				if i > 0 {
-					if slice[k] == "" {
-						x++
-					} else {
-						break
-					}
-				}
-			}
 			if !inQuots && IsQuoteBalanced(slice, i) {
 				slice[i] = "'" + slice[i+1]
 				if slice[i+1] == "'" {
